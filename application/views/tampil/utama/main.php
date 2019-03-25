@@ -12,6 +12,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link href="<?php echo base_url('_template/plugins/sweet-alert2/sweetalert2.min.css')?>" rel="stylesheet" type="text/css" >
+  
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url() ?>_template/plugins/datatables/dataTables.bootstrap.css">
   <!-- Theme style -->
@@ -326,7 +328,102 @@
 <script src="<?php echo base_url() ?>_template/dist/js/app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url() ?>_template/dist/js/demo.js"></script>
+<script src="<?php echo base_url() ?>_template/plugins/sweet-alert2/sweetalert2.min.js"></script>
 <!-- page script -->
+<script>
+$(document).ready(function(){
+    $('button.edit_nilai').click(function() {
+                        var id= $(this).attr("data");                        
+                        $.ajax({
+                            type : "GET",
+                            url  : "<?php echo base_url('nilai/nilai/shownilaitk')?>",
+                            dataType : "JSON" ,
+                            data : {id:id},
+                            success: function(data){
+                                    $('#modal_editnilai').modal('show');
+                                    $('[name="id_siswa"]').val(data.id_siswa);
+                                    $('[name="nama"]').val(data.nama_siswa);
+                                    $('[name="nilai"]').val(data.nilai_observasi);                                
+                            }
+                        });
+                        return false;
+                    });
+
+      $('button.hapus_siswa').click(function() {
+                    var id = $(this).attr("data");
+                    deletepenghuni(id);
+                  });
+
+                  function deletepenghuni(id) {
+                    swal({
+                      title: "Apakah anda yakin?", 
+                      text: "Anda akan menghapus data siswa dari database", 
+                      type: "warning",
+                      showCancelButton: true,
+                      confirmButtonText:"Ya, Hapus siswa!",
+                      confirmButtonColor:"#ec6c62"
+                    }).then(function() {
+                      $.ajax({
+                        url: "<?php echo base_url('nilai/nilai/exe_deletesiswa')?>",
+                        type: "POST",
+                        dataType:"JSON",
+                        data: {id_siswa:id},
+                        success: function(data){
+                            swal("Deleted!", "Data siswa berhasil dihapus!", "success").then(function(){
+                                location.reload();
+                            });
+                        },
+                      
+                        error:function(data) {
+                        swal("Oops", "We couldn't connect to the server!", "error");
+                        }
+                    })
+                  });
+                }
+
+});
+
+function simpannilai(){
+  var url = "<?php echo base_url('nilai/nilai/exe_editnilai')?>";
+  var form = '#form_edit_nilai';
+  var modal='#modal_editnilai';
+  var sukses="Berhasil Edit Nilai";
+  var gagal="Gagal edit nilai";
+
+  $.ajax({
+                url : url,
+                type: "POST",
+                data: $(form).serialize(),
+                success: function(data)
+                            {
+                                $(modal).modal('hide');
+                                swal(
+                                    {
+                                        title: 'Selesai!',
+                                        text: sukses,
+                                        type: 'success',
+                                        confirmButtonColor: '#4fa7f3',
+                                        allowOutsideClick: false
+                                    }    
+                                ).then(function(){
+                                    location.reload();
+                                });
+                                
+                            },
+                            error:function()
+                            {
+                                //alert('error');
+                                swal({
+                                  type: 'error',
+                                  title: 'Gagal Edit nilai',
+                                  text: 'Periksa Koneksi anda',
+                                  showConfirmButton: true,
+                                  footer: gagal
+                                })
+                            }
+                });
+}
+</script>
 <script>
   $(function () {
     $("#example1").DataTable();

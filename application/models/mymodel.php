@@ -51,6 +51,31 @@ class Mymodel extends CI_Model {
       return $data;
     }
 
+    function getnilaitk(){
+      $this->db->select('siswa.*,user.id_jenjang');
+      $this->db->join('user','siswa.id_user = user.id_user');
+      $this->db->from('siswa');
+      $this->db->where('user.id_jenjang', '1');
+      return $this->db->get();
+    }
+
+    function getsiswa_tk($id){
+      $this->db->select('*');
+      $this->db->from('siswa');
+      $this->db->where('id_siswa',$id);
+      return $this->db->get();
+    }
+    function getnilaisiswa_tk($id){
+      $this->db->select('*');
+      $this->db->from('nilai_observasi');
+      $this->db->where('id_siswa',$id);
+      $result = $this->db->get()->row();
+
+      if(!$result)return 0;
+
+      return $result;
+    }
+
     function selectsiswafornilaisd(){
         $this->db->select('nilai_tes.*, nilai_psikotes.*, siswa.*, user.*');
         $this->db->join('nilai_tes', 'siswa.id_siswa = nilai_tes.id_siswa');

@@ -3,6 +3,7 @@
     <div class="box">
       <div class="box-header">
         <h3 class="box-title">Masukkan Nilai Siswa TK</h3><br><br>
+        <?php $this->load->view('tampil/nilai/editnilai'); ?>
        <!--  <a href="<?php echo base_url('petugas/petugasdata/tambahData')?>" class="btn btn-primary pull-left" style="width: 30%;">Tambah Data Petugas</a> -->
 
       </div>
@@ -40,8 +41,9 @@
                 ?>
                 <td><?php echo $nilai; ?></td>
                 <td style="text-align:center;">
-                  <a href="#" class="btn btn-info " onclick="updatejs('<?php echo $n->id_siswa; ?>')">Edit</a>
-                  <a class="btn btn-danger " onclick="deleted('<?php echo $n->id_siswa; ?>')">Delete</a>
+                <a><button type="button" class="btn btn-info edit_nilai"  data=<?php echo $id ?>>Edit</button></a>
+                <!--<a href="#" class="btn btn-info " onclick="updatejs('<?php echo $n->id_siswa; ?>')">Edit</a>  -->
+                <a><button type="button" class="btn btn-danger hapus_siswa"  data=<?php echo $id ?>>Delete</button></a>
                 </td>
               </tr>
             <?php

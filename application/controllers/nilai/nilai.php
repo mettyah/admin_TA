@@ -11,7 +11,7 @@ class Nilai extends CI_Controller {
 	{
 	 	$data['side']='tampil/side/sidesekretaris';
 	 	$data['content']='tampil/nilai/nilaitk';
-	 	$data['siswa']= $this->db->query("SELECT * FROM siswa"); //tambah where id_jenjang = 1
+		$data['siswa']=$this->mymodel->getnilaitk();
 		$data['nilai']=$this->mymodel->selectsiswafornilaitk();
 	 	$this->load->view('tampil/utama/main',$data);
 	}
@@ -42,6 +42,46 @@ class Nilai extends CI_Controller {
 	 	$data['content']='tampil/nilai/nilaiupdate';
 	 	$this->load->view('tampil/utama/main',$data);
 	}
+
+	public function shownilaitk(){
+		$id=$this->input->get('id');
+		$siswa=$this->mymodel->getsiswa_tk($id)->row();
+		$nilai=$this->mymodel->getnilaisiswa_tk($id);
+		if($nilai === 0) {
+			$nilai_tk=0;
+		}else{
+			$nilai_tk=$nilai->nilai_observasi;
+		}
+		$data = array(
+			'id_siswa' => $siswa->id_siswa,
+			'nama_siswa' => $siswa->nama_siswa,
+			'nilai_observasi' => $nilai_tk
+		);
+		echo json_encode($data);
+	}
+
+	public function exe_editnilai(){
+		$id=$this->input->post('id_siswa');
+		$nama=$this->input->post('nama');
+		$nilai=$this->input->post('nilai');
+		$data = array(
+			'id_siswa'=>$id,
+			'nilai_observasi'=>$nilai
+		);
+		$exist=$this->db->query("SELECT * from nilai_observasi WHERE id_siswa=$id")->row();
+		if(!$exist){
+			$this->db->insert('nilai_observasi',$data);
+		}else{
+			$this->db->where('id_siswa',$id);
+       		$this->db->update('nilai_observasi',$data);
+		}
+	}
+
+	public function exe_deletesiswa(){
+		$id_siswa=$this->input->post('id_siswa');
+		$this->db->query("DELETE from siswa WHERE id_siswa='$id_siswa'");
+	}
+
 	public function detnilaisd()
 	{
 		$id=$this->uri->segment(4);
