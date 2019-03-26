@@ -31,7 +31,8 @@ class Verifikasi extends CI_Controller {
 	 public function dttk(){
 	 	//update data tk (view)
 		$id=$this->uri->segment(4);
-		$data['pengumuman']=$this->mymodel->tampilverifikasitk();
+		$data['pengumuman']=$this->mymodel->verifikasi_ulang($id);
+		//$data['pengumuman']=$this->mymodel->tampilverifikasitk();
 	 	$data['side']='tampil/side/sidesekretaris';
 	 	$data['content']='tampil/verifikasi/updatetk';
 	 	$this->load->view('tampil/utama/main',$data);

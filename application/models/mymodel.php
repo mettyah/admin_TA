@@ -231,11 +231,10 @@ class Mymodel extends CI_Model {
 
       function verifikasi_ulang($id){
         $this->db->select('siswa.*, user.*, pendaftaran_ulang.*');
-        $this->db->join('siswa', 'user.id_user = siswa.id_user');
-        $this->db->join('pendaftaran_ulang', 'user.id_user = pendaftaran_ulang.id_user');
-        $this->db->from('user');
-        $this->db->where('user.id_user', $id);
-        $this->db->group_by('pendaftaran_ulang.id_pendaftaran_ulang');
+        $this->db->join('siswa', 'pendaftaran_ulang.id_siswa = siswa.id_siswa');
+        $this->db->join('user','pendaftaran_ulang.id_user = user.id_user');
+        $this->db->from('pendaftaran_ulang');
+        $this->db->where('pendaftaran_ulang.id_pendaftaran_ulang', $id);
         $data=$this->db->get();
         return $data;
       }
