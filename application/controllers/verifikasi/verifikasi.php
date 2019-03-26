@@ -31,7 +31,7 @@ class Verifikasi extends CI_Controller {
 	 public function dttk(){
 	 	//update data tk (view)
 		$id=$this->uri->segment(4);
-		$data['pengumuman']=$this->mymodel->verifikasi_ulang($id);
+		$data['pengumuman']=$this->mymodel->tampilverifikasitk();
 	 	$data['side']='tampil/side/sidesekretaris';
 	 	$data['content']='tampil/verifikasi/updatetk';
 	 	$this->load->view('tampil/utama/main',$data);
@@ -54,8 +54,12 @@ class Verifikasi extends CI_Controller {
 	 }
 
 	 public function proses_update_tk(){
-		$where['id_user']=$this->input->post('id_user');
- 		$data['id_pembayaran']=$this->input->post('status');
+		$id=$this->input->post('id_pendaftaran');
+		$data= array(
+			'id_pembayaran'=>'1'
+		);
+		$this->db->where('id_pendaftaran_ulang',$id);
+		$this->db->update('pendaftaran_ulang',$data);
  		$this->mymodel->update('pendaftaran_ulang',$data, $id);
  		header('location:'.base_url().'verifikasi/verifikasi/pgtk');
 	 }

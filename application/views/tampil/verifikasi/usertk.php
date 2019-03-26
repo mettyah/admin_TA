@@ -24,17 +24,17 @@
     						<td><?php echo $n++;?></td>
     						<td><?php echo $p->nama_siswa;?></td>
     						<td><?php echo $p->no_telp_siswa;?></td>
-    						        <td>
-                        <?php if ($p->id_pembayaran == 2): ?>
+    						<td>
+                        <?php if ($p->id_pembayaran=="2"): ?>
                           BELUM TERVERIFIKASI
                         <?php endif; ?>
-                        <?php if ($p->id_pembayaran == 1): ?>
+                        <?php if ($p->id_pembayaran=="1"): ?>
                           TERVERIFIKASI
                         <?php endif; ?>
                         </td>
-                        <?php if ($p->id_pembayaran == 2): ?>
+                        <?php if ($p->id_pembayaran == "2"): ?>
     						<td style="text-align: center;">
-                  <a href="#" class="btn btn-info"  onclick="updatejs('<?php echo $p->id_user; ?>')">Validate</a>
+                  <a href="#" class="btn btn-info"  onclick="updatejs('<?php echo $p->id_pendaftaran_ulang; ?>')">Validate</a>
                   <a class="btn btn-danger " onclick="deleted('<?php echo $p->id_user; ?>')">Delete</a>
                 </td>
                 <?php else: ?>

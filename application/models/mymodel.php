@@ -115,10 +115,8 @@ class Mymodel extends CI_Model {
 
 // tampilan data siswa tk admin sekretaris
       function siswatk1(){
-        $this->db->select('siswa.*, user.*, jenis_kelamin.*, status_diterima.*');
+        $this->db->select('siswa.*, user.*');
         $this->db->join('user', 'siswa.id_user = user.id_user');
-        $this->db->join('jenis_kelamin', 'siswa.id_jenis_kelamin = jenis_kelamin.id_jenis_kelamin');
-        $this->db->join('status_diterima', 'siswa.id_status_diterima = status_diterima.id_status_diterima');
         $this->db->from('siswa');
         $this->db->where('user.id_jenjang', '1');
         $data=$this->db->get();
@@ -128,10 +126,8 @@ class Mymodel extends CI_Model {
 
 // tampilan data siswa sd admin sekretaris
       function siswasd1(){
-        $this->db->select('siswa.*, user.*, jenis_kelamin.*, status_diterima.*');
+        $this->db->select('siswa.*, user.*');
         $this->db->join('user', 'siswa.id_user = user.id_user');
-        $this->db->join('jenis_kelamin', 'siswa.id_jenis_kelamin = jenis_kelamin.id_jenis_kelamin');
-        $this->db->join('status_diterima', 'siswa.id_status_diterima = status_diterima.id_status_diterima');
         $this->db->from('siswa');
         $this->db->where('user.id_jenjang', '2');
         $data=$this->db->get();
@@ -141,10 +137,8 @@ class Mymodel extends CI_Model {
 
 // tampilan data siswa sd admin sekretaris
       function siswasmp1(){
-        $this->db->select('siswa.*, user.*, jenis_kelamin.*, status_diterima.*');
+        $this->db->select('siswa.*, user.*');
         $this->db->join('user', 'siswa.id_user = user.id_user');
-        $this->db->join('jenis_kelamin', 'siswa.id_jenis_kelamin = jenis_kelamin.id_jenis_kelamin');
-        $this->db->join('status_diterima', 'siswa.id_status_diterima = status_diterima.id_status_diterima');
         $this->db->from('siswa');
         $this->db->where('user.id_jenjang', '3');
         $data=$this->db->get();

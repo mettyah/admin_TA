@@ -18,6 +18,7 @@
             <div class="form-group">
                 <label for="inputnama" class="col-sm-2 control-label">ID User</label>
                 <div class="col-sm-10">
+              <input type="hidden" class="form-control" id="id_pendaftaran" value="<?php echo $p->id_pendaftaran_ulang;?>" name="id_pendaftaran" readonly>
               <input type="text" class="form-control" id="id" value="<?php echo $p->id_user;?>" name="id_user" readonly>
               </div>
             </div>
@@ -41,10 +42,10 @@
                 <div class="col-sm-10">
                     <select class="form-control" name="status" value="<?php echo $p->id_pembayaran; ?>">
                         <option selected="selected">-Pilih-</option>
-                        <option <?php if ($p->id_pembayaran=="1"): ?>
+                        <option <?php if ($p->id_pembayaran=="2"): ?>
                           SELECTED
                         <?php endif ?>value="1">TERVERIFIKASI</option>
-                        <option <?php if ($p->id_pembayaran=="2"): ?>
+                        <option <?php if ($p->id_pembayaran=="1"): ?>
                           SELECTED
                         <?php endif ?>value="2">BELUM TERVERIFIKASI</option>
                     </select>

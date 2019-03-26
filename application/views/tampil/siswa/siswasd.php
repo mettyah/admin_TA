@@ -27,7 +27,7 @@
                 <td><?php echo $s->nama_siswa; ?></td>
                 <td><?php echo $s->tanggal_lahir_siswa; ?></td>
                 <td><?php echo $s->jenis_kelamin; ?></td>
-                <td><?php echo $s->status_diterima; ?></td>
+                <td><?php echo $s->status; ?></td>
                 <td style="text-align: center;">
                   <a class="btn btn-info " onclick="detailsiswa('<?php echo $s->id_siswa; ?>')">Detail</a>
                   <a class="btn btn-danger " onclick="deleted('<?php echo $s->id_siswa; ?>')">Delete</a>
