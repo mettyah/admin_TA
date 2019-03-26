@@ -11,16 +11,15 @@ class Nilai extends CI_Controller {
 	{
 	 	$data['side']='tampil/side/sidesekretaris';
 	 	$data['content']='tampil/nilai/nilaitk';
-		$data['siswa']=$this->mymodel->getnilaitk();
-		$data['nilai']=$this->mymodel->selectsiswafornilaitk();
+		$data['siswa']=$this->mymodel->getnilai_siswa(1);
 	 	$this->load->view('tampil/utama/main',$data);
 	}
 
 	public function nisd()
 	{
 		$data['side']='tampil/side/sidesekretaris';
-	 	$data['content']='tampil/nilai/nilaisd';
-		$data['nilai']=$this->mymodel->selectsiswafornilaisd();
+		$data['content']='tampil/nilai/nilaisd';
+		$data['siswa']=$this->mymodel->getnilai_siswa(2);
 	 	$this->load->view('tampil/utama/main',$data);
 	}
 	
@@ -28,7 +27,7 @@ class Nilai extends CI_Controller {
 	{
 		$data['side']='tampil/side/sidesekretaris';
 	 	$data['content']='tampil/nilai/nilaismp';
-		$data['nilai']=$this->mymodel->selectsiswafornilaismp();
+		$data['siswa']=$this->mymodel->getnilai_siswa(3);
 	 	$this->load->view('tampil/utama/main',$data);
 	}
 

@@ -2,7 +2,8 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">Masaukan Nilai Siswa SD</h3><br><br>
+        <h3 class="box-title">Masukan Nilai Siswa SD</h3><br><br>
+        <?php $this->load->view('tampil/nilai/editnilai'); ?>
         <!-- <a href="<?php echo base_url('petugas/petugasdata/tambahData')?>" class="btn btn-primary pull-left" style="width: 30%;">Tambah Data Petugas</a> -->
 
       </div>
@@ -21,7 +22,7 @@
           <tbody>
             <?php
             $no = 1;
-            foreach ($nilai->result() as $n){
+            foreach ($siswa->result() as $n){
             ?>
               <tr>
                 <td><?php echo $no++?></td>
@@ -40,8 +41,8 @@
                 ?>
                 <td><?php echo $nilai; ?></td>
                 <td style="text-align:center;">
-                  <a href="#" class="btn btn-info " onclick="updatejs('<?php echo $n->id_siswa; ?>')">Edit</a>
-                  <a class="btn btn-danger " onclick="deleted('<?php echo $n->id_siswa; ?>')">Delete</a>
+                <a><button type="button" class="btn btn-info edit_nilai"  data=<?php echo $id ?>>Edit</button></a>
+                <a><button type="button" class="btn btn-danger hapus_siswa"  data=<?php echo $id ?>>Delete</button></a>
                 </td>
               </tr>
             <?php

@@ -51,11 +51,11 @@ class Mymodel extends CI_Model {
       return $data;
     }
 
-    function getnilaitk(){
+    function getnilai_siswa($jenjang){
       $this->db->select('siswa.*,user.id_jenjang');
       $this->db->join('user','siswa.id_user = user.id_user');
       $this->db->from('siswa');
-      $this->db->where('user.id_jenjang', '1');
+      $this->db->where('user.id_jenjang', $jenjang);
       return $this->db->get();
     }
 
