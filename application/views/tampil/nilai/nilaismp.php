@@ -14,13 +14,7 @@
 
            <th>No</th>
             <th>Nama</th>
-            <th>Matematika</th>
-            <th>IPA</th>
-            <th>Bahasa Indonesia</th>
-            <th>Bahasa Inggris</th>
-            <th>Psikologi</th>
-            <th>Jumlah</th>
-            <th>Rata-rata</th>
+            <th>Nilai Observasi</th>
             <th>Aksi</th>
           </tr>
           </thead>
@@ -32,13 +26,19 @@
               <tr>
                 <td><?php echo $no++?></td>
                 <td><?php echo $n->nama_siswa; ?></td>
-                <td><?php echo $n->matematika; ?></td>
-                <td><?php echo $n->ipa; ?></td>
-                <td><?php echo $n->bahasa_indonesia; ?></td>
-                <td><?php echo $n->bahasa_inggris; ?></td>
-                <td><?php echo $n->psikologi; ?></td>
-                <td><?php echo $n->jumlah_nilai_tes; ?></td>
-                <td><?php echo $n->rata_rata_nilai_tes; ?></td>
+                <?php
+                $id= $n->id_siswa;
+                $siswa =$this->db->query("SELECT * from nilai_observasi where id_siswa = $id");
+                $row = $siswa->num_rows();
+
+                if($row >= 1){
+                  $nilai= $this->db->query("SELECT nilai_observasi from nilai_observasi where id_siswa=$id")->row()->nilai_observasi;
+                }else{
+                  $nilai=0;
+                }
+
+                ?>
+                <td><?php echo $nilai; ?></td>
                 <td style="text-align:center;">
                   <a href="#" class="btn btn-info " onclick="updatejs('<?php echo $n->id_siswa; ?>')">Edit</a>
                   <a class="btn btn-danger " onclick="deleted('<?php echo $n->id_siswa; ?>')">Delete</a>
