@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 26, 2019 at 04:34 AM
+-- Generation Time: Mar 26, 2019 at 08:21 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -619,6 +619,13 @@ CREATE TABLE `riwayat_sekolah` (
   `id_siswa` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `riwayat_sekolah`
+--
+
+INSERT INTO `riwayat_sekolah` (`id_riwayat_sekolah`, `asal_sekolah`, `nama_sekolah`, `tahun_masuk`, `tahun_lulus`, `alamat_sekolah`, `kesulitan_saat_sekolah`, `aktifitas_yang_disukai`, `id_siswa`) VALUES
+(1, 'TK', 'tk al amien jember', 2019, 2020, 'jl. wijaya kusuma no 1 patrang jember', 'normal', 'menggambar', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -656,8 +663,16 @@ CREATE TABLE `siswa` (
   `gambar_siswa` varchar(100) NOT NULL,
   `jenis_kelamin` enum('Laki-laki','Perempuan','') NOT NULL,
   `agama` enum('Islam','Katolik','Protestan','Hindu','Budha','Kong hu cu') NOT NULL,
-  `warganegara` enum('Warga Negara Indonesia','Warga Negara Asing','Warga Negara Indonesia Keturunan') NOT NULL
+  `warganegara` enum('Warga Negara Indonesia','Warga Negara Asing','Warga Negara Indonesia Keturunan') NOT NULL,
+  `status` enum('Lulus','Tidak Lulus','Belum Lulus','') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `siswa`
+--
+
+INSERT INTO `siswa` (`id_siswa`, `nama_siswa`, `nama_panggilan`, `tempat_lahir_siswa`, `tanggal_lahir_siswa`, `usia_siswa`, `tinggal_bersama_siswa`, `bahasa_sehari_hari_dirumah`, `anak_ke_siswa`, `id_user`, `no_telp_siswa`, `gambar_siswa`, `jenis_kelamin`, `agama`, `warganegara`, `status`) VALUES
+(1, 'metty anugrah', 'metty', 'jember', '2019-03-26', 12, 'Orang Tua', 0, 1, 2, '08990166717', 'gallery/Gambar_siswa/GraffitiCreator213.png', 'Perempuan', 'Islam', 'Warga Negara Indonesia', 'Belum Lulus');
 
 -- --------------------------------------------------------
 
@@ -1031,7 +1046,7 @@ ALTER TABLE `kuisioner`
 -- AUTO_INCREMENT for table `nilai_observasi`
 --
 ALTER TABLE `nilai_observasi`
-  MODIFY `id_nilai_observasi` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_nilai_observasi` int(9) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `nilai_psikotes`
@@ -1043,7 +1058,7 @@ ALTER TABLE `nilai_psikotes`
 -- AUTO_INCREMENT for table `nilai_tes`
 --
 ALTER TABLE `nilai_tes`
-  MODIFY `id_nilai_tes` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_nilai_tes` int(9) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `notifikasi`
@@ -1061,19 +1076,19 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `pendaftaran_baru`
 --
 ALTER TABLE `pendaftaran_baru`
-  MODIFY `id_pendaftaran_baru` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pendaftaran_baru` int(9) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pendaftaran_ulang`
 --
 ALTER TABLE `pendaftaran_ulang`
-  MODIFY `id_pendaftaran_ulang` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_pendaftaran_ulang` int(9) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `riwayat_sekolah`
 --
 ALTER TABLE `riwayat_sekolah`
-  MODIFY `id_riwayat_sekolah` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_riwayat_sekolah` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `saudara_kandung_anak`
@@ -1085,7 +1100,7 @@ ALTER TABLE `saudara_kandung_anak`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `id_siswa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id_siswa` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
@@ -1174,7 +1189,7 @@ ALTER TABLE `kesehatan_anak`
 -- Constraints for table `nilai_observasi`
 --
 ALTER TABLE `nilai_observasi`
-  ADD CONSTRAINT `nilai_observasi_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`);
+  ADD CONSTRAINT `nilai_observasi_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `nilai_psikotes`
