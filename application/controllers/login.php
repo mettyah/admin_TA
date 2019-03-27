@@ -4,7 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
 	public function index(){
-  $this->load->view('login_form.php');
+    $data = array(
+      'wrong'=>'0'
+    );  
+  $this->load->view('login_form.php',$data);
 	}
 
 public function ceklogin(){
@@ -34,7 +37,13 @@ public function ceklogin(){
 
 	$username = $this->input->post('username', true);
 	$password = $this->input->post('password', true);
-	$cek = $this->mymodel->ceklogin($username, $password);
+  $cek = $this->mymodel->ceklogin($username, $password);
+  if($cek === 1){
+    $data = array(
+      'wrong'=>'1'
+    );
+    $this->load->view('login_form.php',$data);
+  }else{
 	  $level = $cek->id_level;
 		$data['level'] = $level;
 	  $this->session->set_userdata($data);
@@ -48,7 +57,8 @@ public function ceklogin(){
 	  	redirect('admin/adminsmp');
 		}elseif ($level == '5') {
 	  	redirect('admin/admindirektur');
-		}
+    }
+  }  
 }
 
  function logout(){

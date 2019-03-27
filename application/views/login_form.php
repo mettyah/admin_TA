@@ -8,6 +8,9 @@
 <meta name="keywords" content="Interior Register Form Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <link href="<?php echo base_url()?>_template/bootstrap/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
 <link href="<?php echo base_url()?>_template/bootstrap/css/style.css" rel="stylesheet" type="text/css" media="all"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <link href="//fonts.googleapis.com/css?family=Raleway:400,500,600,700,800,900" rel="stylesheet">
 </head>
 <body style="background-image: url(<?php echo base_url();?>gambar/mie.jpg); ">
@@ -32,6 +35,16 @@
         </div>
       </div>
       <div class="w3_info">
+      <?php if($wrong == 1) { ?>
+      <div class="alert alert-danger">
+      <strong>Maaf!</strong> Username atau Password salah
+      </div>
+      <?php } else{ ?>
+        <div class="alert alert-info">
+        <strong></strong> Masukkan Username atau password yang benar
+        </div>
+      <?php
+      } ?>
         <h2>Login Form</h2>
         <p>Khusus untuk admin</p>
             <form action="<?php echo base_url('login/ceklogin'); ?>" method="post">

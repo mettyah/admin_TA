@@ -35,7 +35,10 @@ class Mymodel extends CI_Model {
   function ceklogin($username, $password){
       $this->db->where('username_admin', $username);
       $this->db->where('password_admin', $password);
-      return $this->db->get('admin')->row();
+      $auth = $this->db->get('admin')->row();
+
+      if(!$auth) return 1;
+      return $auth;
     }
     // end of cek login di login form
 
