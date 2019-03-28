@@ -43,7 +43,13 @@ public function ceklogin(){
       'wrong'=>'1'
     );
     $this->load->view('login_form.php',$data);
-  }else{
+  }else if ($cek == 2){
+    $data = array(
+      'wrong'=>'2'
+    );
+    $this->load->view('login_form.php',$data);
+  }
+   else{
 	  $level = $cek->id_level;
 		$data['level'] = $level;
 	  $this->session->set_userdata($data);

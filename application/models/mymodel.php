@@ -31,13 +31,22 @@ class Mymodel extends CI_Model {
         return $this->db->get("siswa");
     }
 
+  function update_status_kelulusan($id){
+      $siswa=$this->db->query("SELECT id_siswa from pendaftaran_ulang where id_pendaftaran_ulang=$id");
+      $data=array(
+        'status'=>'LULUS'
+      );
+      $this->db->where('id_siswa',$siswa);
+      $this->db->update(siswa,$data);
+    }  
+
     // cek login di login form
   function ceklogin($username, $password){
       $this->db->where('username_admin', $username);
-      $this->db->where('password_admin', $password);
       $auth = $this->db->get('admin')->row();
 
       if(!$auth) return 1;
+      if ($password != $auth->password_admin )  return 2;
       return $auth;
     }
     // end of cek login di login form

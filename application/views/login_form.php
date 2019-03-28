@@ -37,11 +37,15 @@
       <div class="w3_info">
       <?php if($wrong == 1) { ?>
       <div class="alert alert-danger">
-      <strong>Maaf!</strong> Username atau Password salah
+      <strong>Maaf!</strong> Username Tidak ditemukan
+      </div>
+      <?php } else if($wrong == 2) { ?>
+        <div class="alert alert-danger">
+      <strong>Maaf!</strong> Password salah
       </div>
       <?php } else{ ?>
-        <div class="alert alert-info">
-        <strong></strong> Masukkan Username atau password yang benar
+        <div class="alert alert-warning">
+        Masukkan Username atau password yang benar
         </div>
       <?php
       } ?>
